@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DIVYAVANI — Numerology</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        serif: ["Playfair Display", "serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #06060a;
+            color: #f0f0f5;
+            overflow: hidden;
+        }
+
+        /* ─── Stars ─── */
+        #stars-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(1px 1px at 15% 20%, #ccc, transparent),
+                radial-gradient(1px 1px at 35% 60%, #eee, transparent),
+                radial-gradient(1px 1px at 55% 10%, #fff, transparent),
+                radial-gradient(1px 1px at 72% 80%, #ddd, transparent),
+                radial-gradient(1.5px 1.5px at 85% 30%, #fff, transparent),
+                radial-gradient(1px 1px at 10% 75%, #bbb, transparent),
+                radial-gradient(1px 1px at 92% 55%, #eee, transparent),
+                radial-gradient(1px 1px at 48% 92%, #ccc, transparent);
+            background-size: 600px 600px;
+            animation: starsDrift 100s linear infinite;
+            opacity: .4;
+        }
+
+        @keyframes starsDrift {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 600px 600px;
+            }
+        }
+
+        /* ─── Gradient BG blobs ─── */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─── Layout ─── */
+        #app-shell {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ─── Header ─── */
+        header {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 32px;
+            background: rgba(6, 6, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(238, 205, 43, 0.12);
+        }
+
+        /* ─── Glass card ─── */
+        .gc {
+            background: rgba(15, 15, 22, 0.65);
+            border: 1px solid rgba(238, 205, 43, 0.11);
+            border-radius: 18px;
+            backdrop-filter: blur(24px);
+            transition: border-color .3s, box-shadow .3s, transform .3s;
+        }
+
+        .gc:hover {
+            border-color: rgba(238, 205, 43, 0.28);
+            box-shadow: 0 12px 40px rgba(238, 205, 43, 0.07);
+            transform: translateY(-1px);
+        }
+
+        /* ─── Gold utilities ─── */
+        .g-text {
+            background: linear-gradient(135deg, #eecd2b, #f5a623);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .g-btn {
+            background: linear-gradient(135deg, #eecd2b, #f5a623);
+            color: #160f00;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: filter .2s, transform .2s;
+        }
+
+        .g-btn:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+
+        .gold-ring {
+            border: 2px solid rgba(238, 205, 43, 0.35);
+            background: rgba(238, 205, 43, 0.06);
+            border-radius: 16px;
+        }
+
+        /* ─── Section label ─── */
+        .sec-label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .45);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .sec-label .material-symbols-outlined {
+            font-size: 14px;
+            color: #eecd2b;
+        }
+
+        /* ─── Keyword chip ─── */
+        .kw-chip {
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            border: 1px solid rgba(238, 205, 43, 0.3);
+            background: rgba(238, 205, 43, 0.08);
+            color: #eecd2b;
+        }
+
+        /* ─── Lucky tile ─── */
+        .lucky-tile {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: all .25s;
+        }
+
+        .lucky-tile:hover {
+            background: rgba(238, 205, 43, 0.07);
+            border-color: rgba(238, 205, 43, 0.2);
+        }
+
+        .lucky-tile .material-symbols-outlined {
+            font-size: 20px;
+            color: #eecd2b;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .lucky-tile .lt-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: rgba(255, 255, 255, .35);
+        }
+
+        .lucky-tile .lt-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 3px;
+        }
+
+        /* ─── Compat badge ─── */
+        .compat-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid rgba(238, 205, 43, 0.35);
+            background: rgba(238, 205, 43, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: #eecd2b;
+            transition: all .2s;
+        }
+
+        .compat-badge:hover {
+            background: rgba(238, 205, 43, 0.18);
+            transform: scale(1.1);
+        }
+
+        /* ─── Famous chip ─── */
+        .famous-chip {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            color: rgba(255, 255, 255, .7);
+            transition: all .2s;
+        }
+
+        .famous-chip:hover {
+            color: #fff;
+            border-color: rgba(238, 205, 43, .25);
+        }
+
+        /* ─── Insight paragraph ─── */
+        .insight-p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .65);
+        }
+
+        /* ─── Scrollable columns ─── */
+        .scroll-col {
+            overflow-y: auto;
+        }
+
+        .scroll-col::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .scroll-col::-webkit-scrollbar-thumb {
+            background: rgba(238, 205, 43, .2);
+            border-radius: 10px;
+        }
+
+        /* ─── Form input ─── */
+        .form-input {
+            width: 100%;
+            height: 52px;
+            padding: 0 18px;
+            border-radius: 14px;
+            outline: none;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: #fff;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color .3s, box-shadow .3s, background .3s;
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, .25);
+        }
+
+        .form-input:focus {
+            border-color: rgba(238, 205, 43, .45);
+            background: rgba(238, 205, 43, .03);
+            box-shadow: 0 0 0 3px rgba(238, 205, 43, .08), 0 0 20px rgba(238, 205, 43, .06);
+        }
+
+        /* ─── Pulse ring animation ─── */
+        @keyframes pulseRing {
+
+            0%,
+            100% {
+                box-shadow: 0 0 40px rgba(238, 205, 43, .08), inset 0 0 20px rgba(238, 205, 43, .04);
+            }
+
+            50% {
+                box-shadow: 0 0 55px rgba(238, 205, 43, .15), inset 0 0 30px rgba(238, 205, 43, .07);
+            }
+        }
+
+        /* ─── Reveal button shimmer ─── */
+        .reveal-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .15), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            50% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* ─── Fade in ─── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeUp .5s ease forwards;
+        }
+
+        /* ─── Number glow ─── */
+        .num-glow {
+            text-shadow: 0 0 18px rgba(238, 205, 43, .5);
+        }
+
+        /* ─── Scrollbar hide ─── */
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Stars & blobs -->
+    <div id="stars-overlay"></div>
+    <div class="bg-blob"
+        style="width:700px;height:700px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(100,60,200,.07),transparent 70%)">
+    </div>
+    <div class="bg-blob"
+        style="width:600px;height:600px;bottom:-150px;right:-100px;background:radial-gradient(circle,rgba(238,205,43,.04),transparent 70%)">
+    </div>
+
+    <div id="app-shell">
+
+        <!-- ── HEADER ── -->
+        <header>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <span class="material-symbols-outlined" style="color:#eecd2b;font-size:22px;">spa</span>
+                <span class="g-text"
+                    style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;letter-spacing:.05em;">DIVYAVANI</span>
+            </div>
+            <button class="g-btn" style="padding:8px 22px;border-radius:12px;font-size:12px;letter-spacing:.04em;">Sign
+                In</button>
+        </header>
+
+        <!-- ══════ INPUT VIEW ══════ -->
+        <div id="step-input" style="flex:1;display:flex;align-items:center;justify-content:center;">
+            <div class="gc fade-up" style="width:100%;max-width:520px;padding:0;overflow:hidden;">
+
+                <!-- ── Decorative Top ── -->
+                <div
+                    style="text-align:center;padding:48px 44px 28px;background:linear-gradient(180deg,rgba(238,205,43,.06) 0%,transparent 100%);">
+                    <!-- Cosmic Ring Icon -->
+                    <div
+                        style="width:90px;height:90px;margin:0 auto 24px;border-radius:50%;border:2px solid rgba(238,205,43,.3);display:flex;align-items:center;justify-content:center;background:rgba(238,205,43,.04);box-shadow:0 0 40px rgba(238,205,43,.08),inset 0 0 20px rgba(238,205,43,.04);animation:pulseRing 3s ease-in-out infinite;">
+                        <span class="material-symbols-outlined"
+                            style="font-size:40px;color:#eecd2b;">auto_awesome</span>
+                    </div>
+                    <h1 class="g-text"
+                        style="font-family:'Playfair Display',serif;font-size:32px;font-weight:800;margin-bottom:12px;">
+                        Discover Your Destiny</h1>
+                    <p
+                        style="font-size:14px;color:rgba(255,255,255,.45);max-width:320px;margin:0 auto;line-height:1.6;">
+                        Enter your birth details to unlock the cosmic blueprint written in your numbers.</p>
+                    <!-- Gradient Divider -->
+                    <div
+                        style="width:80px;height:2px;margin:24px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(238,205,43,.4),transparent);">
+                    </div>
+                </div>
+
+                <!-- ── Form Body ── -->
+                <div style="padding:28px 44px 40px;">
+                    <form id="numerology-form" style="display:flex;flex-direction:column;gap:22px;">
+
+                        <!-- Name Field -->
+                        <div>
+                            <label
+                                style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;">
+                                <span class="material-symbols-outlined"
+                                    style="font-size:15px;color:#eecd2b;">person</span>
+                                Full Name
+                            </label>
+                            <input class="form-input" type="text" id="name" name="name" required
+                                placeholder="e.g. Aditi Sharma" />
+                        </div>
+
+                        <!-- DOB Field -->
+                        <div>
+                            <label
+                                style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;">
+                                <span class="material-symbols-outlined"
+                                    style="font-size:15px;color:#eecd2b;">calendar_month</span>
+                                Date of Birth
+                            </label>
+                            <input class="form-input" type="date" id="dob" name="dob" required />
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="btn-reveal" class="g-btn reveal-btn"
+                            style="height:52px;border-radius:14px;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:6px;letter-spacing:.04em;position:relative;overflow:hidden;">
+                            <span style="position:relative;z-index:1;">Reveal Destiny</span>
+                            <span class="material-symbols-outlined"
+                                style="font-size:18px;position:relative;z-index:1;">auto_awesome</span>
+                        </button>
+                    </form>
+
+                    <!-- Trust Footer -->
+                    <div
+                        style="text-align:center;margin-top:24px;display:flex;align-items:center;justify-content:center;gap:6px;">
+                        <span class="material-symbols-outlined"
+                            style="font-size:14px;color:rgba(238,205,43,.35);">lock</span>
+                        <span style="font-size:11px;color:rgba(255,255,255,.25);letter-spacing:.04em;">Your data stays
+                            in your browser. Nothing is stored.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ══════ RESULT VIEW ══════ -->
+        <div id="numerology-result"
+            style="display:none;flex-direction:column;flex:1;padding:20px 28px;gap:16px;overflow:hidden;">
+
+            <!-- ── Row 1: Title + Reset ── -->
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+                <h1 class="g-text"
+                    style="font-family:'Playfair Display',serif;font-size:20px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;">
+                    Numerology Report
+                </h1>
+                <button id="btn-reset"
+                    style="display:flex;align-items:center;gap:7px;padding:9px 20px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;">
+                    <span class="material-symbols-outlined" style="font-size:15px;">refresh</span> New Check
+                </button>
+            </div>
+
+            <!-- ── Row 2: Top Banner ── -->
+            <div class="gc" style="flex-shrink:0;padding:20px 28px;display:flex;align-items:center;gap:0;">
+
+                <!-- Life Path -->
+                <div
+                    style="display:flex;align-items:center;gap:18px;padding-right:28px;border-right:1px solid rgba(255,255,255,.08);">
+                    <div class="gold-ring"
+                        style="width:88px;height:88px;display:flex;align-items:center;justify-content:center;">
+                        <span id="result-number" class="num-glow"
+                            style="font-family:'Playfair Display',serif;font-size:52px;font-weight:800;color:#eecd2b;">?</span>
+                    </div>
+                    <div>
+                        <div
+                            style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#fff;line-height:1.1;">
+                            Life Path</div>
+                        <div style="display:flex;gap:14px;margin-top:6px;">
+                            <span
+                                style="font-size:11px;color:rgba(238,205,43,.7);display:flex;align-items:center;gap:4px;">
+                                <span class="material-symbols-outlined" style="font-size:13px;">public</span>
+                                <span id="result-planet">—</span>
+                            </span>
+                            <span
+                                style="font-size:11px;color:rgba(238,205,43,.7);display:flex;align-items:center;gap:4px;">
+                                <span class="material-symbols-outlined"
+                                    style="font-size:13px;">local_fire_department</span>
+                                <span id="result-element">—</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Destiny / Soul Urge / Personality -->
+                <div
+                    style="display:flex;align-items:center;gap:6px;padding:0 28px;border-right:1px solid rgba(255,255,255,.08);">
+                    <div style="text-align:center;padding:0 16px;border-right:1px solid rgba(255,255,255,.07);">
+                        <div
+                            style="font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,205,43,.55);margin-bottom:6px;">
+                            Destiny</div>
+                        <div id="result-destiny-number"
+                            style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;">?
+                        </div>
+                    </div>
+                    <div style="text-align:center;padding:0 16px;border-right:1px solid rgba(255,255,255,.07);">
+                        <div
+                            style="font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,205,43,.55);margin-bottom:6px;">
+                            Soul Urge</div>
+                        <div id="result-soul-number"
+                            style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;">?
+                        </div>
+                    </div>
+                    <div style="text-align:center;padding:0 16px;">
+                        <div
+                            style="font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,205,43,.55);margin-bottom:6px;">
+                            Personality</div>
+                        <div id="result-personality-number"
+                            style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;">?
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keywords -->
+                <div id="result-keywords" style="flex:1;display:flex;flex-wrap:wrap;gap:8px;padding:0 24px;"></div>
+            </div>
+
+            <!-- ── Row 3: 4-Column Grid ── -->
+            <div
+                style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;overflow:hidden;min-height:0;">
+
+                <!-- ── COL 1: Lucky + Compatibility ── -->
+                <div class="scroll-col" style="display:flex;flex-direction:column;gap:14px;">
+
+                    <!-- Lucky Attributes -->
+                    <div class="gc" style="padding:20px;flex-shrink:0;">
+                        <div class="sec-label">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                            Lucky Attributes
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                            <div class="lucky-tile">
+                                <span class="material-symbols-outlined">palette</span>
+                                <div class="lt-label">Color</div>
+                                <div id="result-lucky-color" class="lt-value">—</div>
+                            </div>
+                            <div class="lucky-tile">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <div class="lt-label">Day</div>
+                                <div id="result-lucky-day" class="lt-value">—</div>
+                            </div>
+                            <div class="lucky-tile">
+                                <span class="material-symbols-outlined">diamond</span>
+                                <div class="lt-label">Gem</div>
+                                <div id="result-lucky-gem" class="lt-value">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compatibility -->
+                    <div class="gc" style="padding:20px;flex-shrink:0;">
+                        <div class="sec-label">
+                            <span class="material-symbols-outlined">handshake</span>
+                            Compatibility
+                        </div>
+                        <div id="result-compatibility" style="display:flex;flex-wrap:wrap;gap:10px;"></div>
+                    </div>
+
+                    <!-- Famous People -->
+                    <div class="gc" style="padding:20px;flex:1;">
+                        <div class="sec-label">
+                            <span class="material-symbols-outlined">group</span>
+                            Famous Companions
+                        </div>
+                        <div id="result-famous" style="display:flex;flex-direction:column;gap:8px;"></div>
+                    </div>
+
+                </div>
+
+                <!-- ── COL 2: Strengths + Challenges ── -->
+                <div class="scroll-col" style="display:flex;flex-direction:column;gap:14px;">
+
+                    <div class="gc" style="padding:20px;flex:1;">
+                        <div class="sec-label">
+                            <span class="material-symbols-outlined" style="color:#4ade80;">task_alt</span>
+                            Strengths
+                        </div>
+                        <p id="result-strengths" class="insight-p"></p>
+                    </div>
+
+                    <div class="gc" style="padding:20px;flex:1;">
+                        <div class="sec-label">
+                            <span class="material-symbols-outlined" style="color:#f87171;">warning</span>
+                            Challenges
+                        </div>
+                        <p id="result-challenges" class="insight-p"></p>
+                    </div>
+
+                </div>
+
+                <!-- ── COL 3: Nature + Destiny Path ── -->
+                <div class="scroll-col" style="display:flex;flex-direction:column;gap:14px;">
+
+                    <div class="gc" style="padding:20px;flex:1;">
+                        <div class="sec-label">
+                            <span class="material-symbols-outlined">psychology</span>
+                            Nature & Personality
+                        </div>
+                        <p id="result-nature" class="insight-p"></p>
+                    </div>
+
+                    <div class="gc" style="padding:20px;flex:1;">
+                        <div class="sec-label">
+                            <span class="material-symbols-outlined">stars</span>
+                            Destiny Path
+                        </div>
+                        <p id="result-destiny-desc" class="insight-p"></p>
+                    </div>
+
+                </div>
+
+                <!-- ── COL 4: Career + Relationships ── -->
+                <div class="scroll-col" style="display:flex;flex-direction:column;gap:14px;">
+
+                    <div class="gc" style="padding:20px;flex:1;">
+                        <div class="sec-label">
+                            <span class="material-symbols-outlined">work</span>
+                            Career & Purpose
+                        </div>
+                        <p id="result-career" class="insight-p"></p>
+                    </div>
+
+                    <div class="gc" style="padding:20px;flex:1;">
+                        <div class="sec-label">
+                            <span class="material-symbols-outlined">favorite</span>
+                            Relationships & Love
+                        </div>
+                        <p id="result-relationships" class="insight-p"></p>
+                    </div>
+
+                </div>
+
+            </div><!-- /grid -->
+        </div><!-- /result -->
+
+    </div><!-- /app-shell -->
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+
+</body>
+
+</html>

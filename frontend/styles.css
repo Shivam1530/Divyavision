@@ -1,0 +1,80 @@
+/*
+ * styles.css
+ * Custom styles for DIVYAVANI.
+ */
+
+/* Custom Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(238, 205, 43, 0.2);
+    border-radius: 20px;
+}
+
+/* Custom Scrollbar for Containers */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(238, 205, 43, 0.3);
+    border-radius: 10px;
+}
+
+/* Spin animation (Legacy if needed) */
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Gold Glowing Text */
+.gold-glow {
+    text-shadow: 0 0 10px rgba(238, 205, 43, 0.5), 0 0 20px rgba(238, 205, 43, 0.2);
+}
+
+/* Action Button Styles */
+.gradient-gold {
+    background: linear-gradient(135deg, #eecd2b 0%, #f5a623 100%);
+    color: #1b190d !important;
+}
+
+.gradient-gold:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 20px rgba(238, 205, 43, 0.4);
+}
