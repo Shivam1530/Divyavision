@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files>
+  <file name="Nakshatra Jyotish.epub" source="derivative">
+    <original>Nakshatra Jyotish_hocr.html</original>
+    <mtime>1704787505</mtime>
+    <size>313673</size>
+    <md5>98e52956a56f4dda98fcf79069061899</md5>
+    <crc32>8854a115</crc32>
+    <sha1>fc12381bbe33f497601534541ee753f18c3841ea</sha1>
+    <format>EPUB</format>
+  </file>
+  <file name="Nakshatra Jyotish.pdf" source="original">
+    <mtime>1638786153</mtime>
+    <size>34589062</size>
+    <md5>2caf8e06a4578f71054652f84f8fcaef</md5>
+    <crc32>ea1bb429</crc32>
+    <sha1>31e0f8d1abb51f9fbc19565af84d68302b474177</sha1>
+    <format>Image Container PDF</format>
+  </file>
+  <file name="Nakshatra Jyotish_chocr.html.gz" source="derivative">
+    <ocr>tesseract 5.0.0-rc2-1-gf788</ocr>
+    <ocr_parameters>-l hin</ocr_parameters>
+    <ocr_module_version>0.0.14</ocr_module_version>
+    <ocr_detected_script>Devanagari</ocr_detected_script>
+    <ocr_detected_script_conf>0.9903</ocr_detected_script_conf>
+    <ocr_detected_lang>hi</ocr_detected_lang>
+    <ocr_detected_lang_conf>1.0000</ocr_detected_lang_conf>
+    <format>chOCR</format>
+    <original>Nakshatra Jyotish_jp2.zip</original>
+    <mtime>1638789499</mtime>
+    <size>4814630</size>
+    <md5>93e16a57b230365737e68ccb2a168fc5</md5>
+    <crc32>08bdd8b9</crc32>
+    <sha1>20f79bf62802d0744eef2f57c8b2623ed27e2345</sha1>
+  </file>
+  <file name="Nakshatra Jyotish_daisy.zip" source="derivative">
+    <original>Nakshatra Jyotish_hocr.html</original>
+    <mtime>1728284387</mtime>
+    <size>247055</size>
+    <md5>7d95e2f86f8adb052bca52c9805d38ab</md5>
+    <crc32>33500372</crc32>
+    <sha1>71af026fcc3c356b9b52a4b49c061987b1ba801a</sha1>
+    <format>Daisy</format>
+    <filecount>9</filecount>
+  </file>
+  <file name="Nakshatra Jyotish_djvu.txt" source="derivative">
+    <format>DjVuTXT</format>
+    <original>Nakshatra Jyotish_djvu.xml</original>
+    <mtime>1638789702</mtime>
+    <size>799312</size>
+    <md5>2c54318b2e90baeaa0bb3f279153740e</md5>
+    <crc32>b7eff61e</crc32>
+    <sha1>c0b16fb0803baf461019f569c045bb07724f45ac</sha1>
+  </file>
+  <file name="Nakshatra Jyotish_djvu.xml" source="derivative">
+    <format>Djvu XML</format>
+    <original>Nakshatra Jyotish_hocr.html</original>
+    <mtime>1638789567</mtime>
+    <size>5499031</size>
+    <md5>28e2f74edc60db8b5ee3fca955155545</md5>
+    <crc32>56c4c908</crc32>
+    <sha1>db2b0685222574f545db26e7ccd77e439426e562</sha1>
+  </file>
+  <file name="Nakshatra Jyotish_hocr.html" source="derivative">
+    <hocr_char_to_word_module_version>1.0.0</hocr_char_to_word_module_version>
+    <hocr_char_to_word_hocr_version>1.1.2</hocr_char_to_word_hocr_version>
+    <ocr_parameters>-l hin</ocr_parameters>
+    <ocr_module_version>0.0.14</ocr_module_version>
+    <ocr_detected_script>Devanagari</ocr_detected_script>
+    <ocr_detected_script_conf>0.9903</ocr_detected_script_conf>
+    <ocr_detected_lang>hi</ocr_detected_lang>
+    <ocr_detected_lang_conf>1.0000</ocr_detected_lang_conf>
+    <format>hOCR</format>
+    <original>Nakshatra Jyotish_chocr.html.gz</original>
+    <mtime>1638789546</mtime>
+    <size>10180492</size>
+    <md5>1ad12465b6e7815841a94ae102cf0c37</md5>
+    <crc32>aa5b2139</crc32>
+    <sha1>57a87bdf883f9ccfd6a641658861900f1d3dacec</sha1>
+  </file>
+  <file name="Nakshatra Jyotish_hocr_pageindex.json.gz" source="derivative">
+    <hocr_pageindex_module_version>1.0.0</hocr_pageindex_module_version>
+    <hocr_pageindex_hocr_version>1.1.0</hocr_pageindex_hocr_version>
+    <format>OCR Page Index</format>
+    <original>Nakshatra Jyotish_hocr.html</original>
+    <mtime>1638789613</mtime>
+    <size>2698</size>
+    <md5>105c9aa83ba0250b4932ab57ab339cf6</md5>
+    <crc32>dde7ce2f</crc32>
+    <sha1>bac953fa4a8cd3a8ba0fa9c85bd4c54d4e44f902</sha1>
+  </file>
+  <file name="Nakshatra Jyotish_hocr_searchtext.txt.gz" source="derivative">
+    <hocr_fts_text_module_version>1.1.0</hocr_fts_text_module_version>
+    <hocr_fts_text_hocr_version>1.1.0</hocr_fts_text_hocr_version>
+    <word_conf_0_10>4167</word_conf_0_10>
+    <word_conf_11_20>1137</word_conf_11_20>
+    <word_conf_21_30>1120</word_conf_21_30>
+    <word_conf_31_40>1100</word_conf_31_40>
+    <word_conf_41_50>1255</word_conf_41_50>
+    <word_conf_51_60>1329</word_conf_51_60>
+    <word_conf_61_70>1388</word_conf_61_70>
+    <word_conf_71_80>2051</word_conf_71_80>
+    <word_conf_81_90>5879</word_conf_81_90>
+    <word_conf_91_100>43286</word_conf_91_100>
+    <format>OCR Search Text</format>
+    <original>Nakshatra Jyotish_hocr.html</original>
+    <mtime>1638789684</mtime>
+    <size>148541</size>
+    <md5>6ac56b1cace691b924b223cec7e624ad</md5>
+    <crc32>a5ead950</crc32>
+    <sha1>6c09677561baf4e017ebd898e214121bc97a4f71</sha1>
+  </file>
+  <file name="Nakshatra Jyotish_jp2.zip" source="derivative">
+    <format>Single Page Processed JP2 ZIP</format>
+    <original>Nakshatra Jyotish.pdf</original>
+    <mtime>1638787428</mtime>
+    <size>217639670</size>
+    <md5>862179b38c2b6151d2e5cfabe9e519bc</md5>
+    <crc32>34e37d47</crc32>
+    <sha1>52100dc796e3d6650c41b5ee6c086642b1e7df90</sha1>
+    <filecount>227</filecount>
+  </file>
+  <file name="Nakshatra Jyotish_page_numbers.json" source="derivative">
+    <format>Page Numbers JSON</format>
+    <original>Nakshatra Jyotish_djvu.xml</original>
+    <mtime>1638789846</mtime>
+    <size>41940</size>
+    <md5>f22e3aff290a65ef0607c2ae5fce1ae7</md5>
+    <crc32>5bf21401</crc32>
+    <sha1>a48b59c5aff0049d15060db3e2b7e2e4df982484</sha1>
+  </file>
+  <file name="Nakshatra Jyotish_scandata.xml" source="derivative">
+    <format>Scandata</format>
+    <original>Nakshatra Jyotish_djvu.xml</original>
+    <mtime>1638789846</mtime>
+    <size>78140</size>
+    <md5>7323cbb033fe43adff278b0fa6c8154e</md5>
+    <crc32>94bcc204</crc32>
+    <sha1>6885f6e93515ff44ad9f5f7301630ad15eda9259</sha1>
+  </file>
+  <file name="Nakshatra Jyotish_text.pdf" source="derivative">
+    <pdf_module_version>0.0.17</pdf_module_version>
+    <format>Additional Text PDF</format>
+    <original>Nakshatra Jyotish_page_numbers.json</original>
+    <mtime>1638791238</mtime>
+    <size>22420053</size>
+    <md5>e75d1914e4d667ef35bfc6ea9fef6d44</md5>
+    <crc32>9c2c5828</crc32>
+    <sha1>cd69820f1bd574b61f04310f2e8b6bb8665accd7</sha1>
+  </file>
+  <file name="__ia_thumb.jpg" source="original">
+    <mtime>1681501972</mtime>
+    <size>25706</size>
+    <md5>c2530c114c26c41e611b2142bae8d634</md5>
+    <crc32>40a79813</crc32>
+    <sha1>557e446b03fc8821f74fcb18744e23b611624247</sha1>
+    <format>Item Tile</format>
+    <rotation>0</rotation>
+  </file>
+  <file name="nakshatra-jyotish_archive.torrent" source="metadata">
+    <btih>e34d92634877fff38a2c18f1f2367b8b1872ea4d</btih>
+    <mtime>1728284392</mtime>
+    <size>15414</size>
+    <md5>5acc3e6efdd294698a8f02f8e6d3837f</md5>
+    <crc32>242a9f29</crc32>
+    <sha1>8aef33a1b7d12bbeff8dd0d563cd5c3cad7beafb</sha1>
+    <format>Archive BitTorrent</format>
+  </file>
+  <file name="nakshatra-jyotish_files.xml" source="original">
+    <format>Metadata</format>
+    <md5>52004a03bb827ccc2199c3ddc8d300fa</md5>
+    <summation>md5</summation>
+  </file>
+  <file name="nakshatra-jyotish_meta.sqlite" source="original">
+    <mtime>1638786181</mtime>
+    <size>20480</size>
+    <md5>f66f8fe8904ebc88a2ea942ca28e4620</md5>
+    <crc32>a3ceb4c8</crc32>
+    <sha1>f5e25ecd63de6bcf2d16a550782a1646c8d2dbc3</sha1>
+    <format>Metadata</format>
+  </file>
+  <file name="nakshatra-jyotish_meta.xml" source="original">
+    <mtime>1681501971</mtime>
+    <size>1320</size>
+    <md5>1e6539bf03a8d55658a33ffae29df537</md5>
+    <crc32>9a107c82</crc32>
+    <sha1>7cadeb5e04b7702c2d12e5a289733a7eca8e265d</sha1>
+    <format>Metadata</format>
+  </file>
+  <file name="nakshatra-jyotish_reviews.xml" source="original">
+    <mtime>1691356144</mtime>
+    <size>538</size>
+    <md5>4b13413b3296f229db66ea0a6f29dfbb</md5>
+    <crc32>5b4d2417</crc32>
+    <sha1>17e3265c477ffe8682a1a4a27506e84d65184a01</sha1>
+    <format>Metadata</format>
+  </file>
+</files>

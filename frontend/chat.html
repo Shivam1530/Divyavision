@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DIVYAVANI — Serene Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="chat.css" />
+</head>
+<body>
+    
+    <!-- Stars & blobs for aesthetic continuity -->
+    <div id="stars-overlay"></div>
+    <div class="bg-blob" style="width:700px;height:700px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(100,60,200,.07),transparent 70%)"></div>
+    <div class="bg-blob" style="width:600px;height:600px;bottom:-150px;right:-100px;background:radial-gradient(circle,rgba(238,205,43,.04),transparent 70%)"></div>
+
+    <div id="app-shell">
+        
+        <!-- HEADER -->
+        <header>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <span class="material-symbols-outlined header-icon">spa</span>
+                <span class="g-text header-title">DIVYAVANI</span>
+            </div>
+            <button id="end-session-btn" class="g-btn end-btn">End Session</button>
+        </header>
+
+        <!-- CHAT INTERFACE -->
+        <main id="chat-container">
+            <div class="chat-intro fade-in">
+                <div class="intro-icon">
+                    <span class="material-symbols-outlined">auto_awesome</span>
+                </div>
+                <h2>Welcome, Seeker</h2>
+                <p>The stars only illuminate for those who dare to look up. Ask your question about life, love, or destiny.</p>
+            </div>
+            <!-- Messages will be appended here -->
+        </main>
+
+        <!-- FOOTER (Input Area) -->
+        <footer>
+            <div class="input-wrapper">
+                <button id="mic-btn" class="icon-btn" title="Hold to speak">
+                    <span class="material-symbols-outlined">mic</span>
+                </button>
+                <div class="stt-status" id="stt-status">Listening...</div>
+                <input type="text" id="chat-input" placeholder="Ask the universe a question..." autocomplete="off" />
+                <button id="send-btn" class="icon-btn g-btn" title="Send message">
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </div>
+            <div class="footer-note">Guided by Divine Intelligence · Insights are for spiritual guidance only</div>
+        </footer>
+
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+</html>

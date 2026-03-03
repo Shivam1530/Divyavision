@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reviews itemIdentifier="nakshatra-jyotish">
+  <review>
+    <reviewtitle>amazing book</reviewtitle>
+    <reviewbody>perfect book for study nakshtra astrology </reviewbody>
+    <stars>5</stars>
+    <reviewer>Radhanand Nath</reviewer>
+    <reviewdate>2023-08-06 21:09:01</reviewdate>
+    <createdate>2023-08-06 21:09:01</createdate>
+    <reviewer_itemname>@radhanand_nath</reviewer_itemname>
+  </review>
+  <info>
+    <num_reviews>1</num_reviews>
+    <avg_rating>5.00</avg_rating>
+  </info>
+</reviews>

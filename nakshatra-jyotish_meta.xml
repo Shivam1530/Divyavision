@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <identifier>nakshatra-jyotish</identifier>
+  <mediatype>texts</mediatype>
+  <description>Jyotish Grantha</description>
+  <language>hin</language>
+  <scanner>Internet Archive HTML5 Uploader 1.6.4</scanner>
+  <subject>Jyotish Grantha</subject>
+  <title>Nakshatra Jyotish</title>
+  <uploader>kiitabghaar@gmail.com</uploader>
+  <publicdate>2021-12-06 10:22:56</publicdate>
+  <addeddate>2021-12-06 10:22:56</addeddate>
+  <curation>[curator]validator@archive.org[/curator][date]20211206102308[/date][comment]checked for malware[/comment]</curation>
+  <identifier-access>http://archive.org/details/nakshatra-jyotish</identifier-access>
+  <identifier-ark>ark:/13960/s24sm20fg33</identifier-ark>
+  <ppi>600</ppi>
+  <ocr>tesseract 5.0.0-rc2-1-gf788</ocr>
+  <ocr_parameters>-l hin</ocr_parameters>
+  <ocr_module_version>0.0.14</ocr_module_version>
+  <ocr_detected_script>Devanagari</ocr_detected_script>
+  <ocr_detected_script_conf>0.9903</ocr_detected_script_conf>
+  <ocr_detected_lang>hi</ocr_detected_lang>
+  <ocr_detected_lang_conf>1.0000</ocr_detected_lang_conf>
+  <page_number_confidence>70.07</page_number_confidence>
+  <pdf_module_version>0.0.17</pdf_module_version>
+  <collection>booksbylanguage_hindi</collection>
+  <collection>booksbylanguage</collection>
+</metadata>
