@@ -4,7 +4,7 @@
  * Includes: Numerology Engine, Backend API, STT, TTS
  */
 
-const BACKEND_URL = 'http://localhost:8000';
+const BACKEND_URL = 'https://divyavision.onrender.com';
 
 // ═══════════════════════════════════════════
 //  PYTHAGOREAN LETTER MAP & DATA

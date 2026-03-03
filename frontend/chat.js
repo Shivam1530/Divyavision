@@ -3,7 +3,7 @@
  * Handles STT, TTS, Backend API communication
  */
 
-const BACKEND_URL = 'http://localhost:8000'; // Assuming local dev
+const BACKEND_URL = 'https://divyavision.onrender.com';
 
 // State
 const appState = {
