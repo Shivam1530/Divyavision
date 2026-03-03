@@ -9,16 +9,19 @@
     --bg-dark: #05060f;
     --bg-darker: #020308;
     --sidebar-bg: #070914;
-    --card-bg: rgba(14, 14, 14, 0.7);
+    --card-bg: rgba(14, 14, 14, 0.4);
     --gold-primary: #ceb24b;
     --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    --gold-soft-gradient: linear-gradient(135deg, rgba(206, 178, 75, 0.2), rgba(206, 178, 75, 0.05));
     --gold-solid: #aa8844;
     --user-msg-bg: #aa771c;
-    /* Solid Gold/Orange in screenshot */
     --text-main: #f0f0f5;
-    --text-dim: rgba(255, 255, 255, 0.5);
-    --border-gold: rgba(206, 178, 75, 0.2);
+    --text-dim: rgba(255, 255, 255, 0.6);
+    --border-gold: rgba(206, 178, 75, 0.15);
     --border-light: rgba(255, 255, 255, 0.08);
+    --nebula-purple: rgba(138, 43, 226, 0.15);
+    --nebula-blue: rgba(0, 191, 255, 0.1);
+    --nebula-gold: rgba(255, 215, 0, 0.08);
 }
 
 * {
@@ -65,22 +68,40 @@ body {
     position: fixed;
     inset: 0;
     z-index: -2;
-    background-image: radial-gradient(1px 1px at 15% 20%, #fff, transparent),
-        radial-gradient(1px 1px at 35% 60%, rgba(255, 255, 255, 0.8), transparent),
-        radial-gradient(1px 1px at 55% 10%, #fff, transparent);
-    background-size: 500px 500px;
-    opacity: 0.2;
-    animation: slowDrift 120s linear infinite;
+    background-image:
+        radial-gradient(1px 1px at 15% 20%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 35% 60%, rgba(255, 255, 255, 1), transparent),
+        radial-gradient(1px 1px at 55% 10%, #fff, transparent),
+        radial-gradient(2px 2px at 85% 40%, rgba(206, 178, 75, 0.8), transparent),
+        radial-gradient(1px 1px at 10% 80%, #fff, transparent),
+        radial-gradient(1.2px 1.2px at 70% 90%, #fff, transparent);
+    background-size: 800px 800px;
+    opacity: 0.4;
+    animation: slowDrift 180s linear infinite, starFlicker 6s ease-in-out infinite alternate;
     pointer-events: none;
+}
+
+@keyframes starFlicker {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
 }
 
 @keyframes slowDrift {
     from {
-        transform: translateY(0);
+        background-position: 0 0;
     }
 
     to {
-        transform: translateY(-500px);
+        background-position: -800px -800px;
     }
 }
 
@@ -100,12 +121,60 @@ body {
     display: flex;
 }
 
-.logo-group-sidebar {
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
+/* ─── Nebula Orbs ─── */
+.nebula-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.15;
+    pointer-events: none;
+    animation: orbSlowFloat 20s infinite alternate ease-in-out;
+}
+
+.nebula-purple {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--nebula-purple), transparent 70%);
+    top: -100px;
+    left: -100px;
+}
+
+.nebula-cyan {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--nebula-blue), transparent 70%);
+    bottom: -100px;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+.nebula-gold {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--nebula-gold), transparent 70%);
+    top: 50%;
+    right: -100px;
+    animation-delay: -10s;
+}
+
+.nebula-blue-deep {
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(0, 0, 139, 0.1), transparent 70%);
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -15s;
+}
+
+@keyframes orbSlowFloat {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(50px, 50px) scale(1.1);
+    }
 }
 
 .logo-spark {
@@ -379,6 +448,19 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    animation: avatarFloat 6s ease-in-out infinite;
+}
+
+@keyframes avatarFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.05);
+    }
 }
 
 .avatar-badge {
@@ -423,11 +505,13 @@ header {
 
 .form-card-new {
     width: 100%;
-    background: var(--card-bg);
+    background: rgba(14, 14, 20, 0.4);
     border: 1px solid var(--border-gold);
-    border-radius: 24px;
-    padding: 40px;
-    backdrop-filter: blur(20px);
+    border-radius: 32px;
+    padding: 48px;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .field-group-new {
@@ -549,37 +633,38 @@ header {
 }
 
 .path-card {
-    background: rgba(14, 14, 20, 0.4);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(206, 178, 75, 0.15);
-    border-radius: 28px;
-    padding: 48px 40px;
+    background: rgba(14, 14, 18, 0.3);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--border-gold);
+    border-radius: 32px;
+    padding: 56px 40px;
     text-align: left;
     position: relative;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
     overflow: hidden;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .path-card:hover {
-    transform: translateY(-12px) scale(1.02);
-    border-color: rgba(206, 178, 75, 0.6);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 20px rgba(206, 178, 75, 0.2);
+    transform: translateY(-12px);
+    border-color: var(--gold-primary);
+    background: rgba(206, 178, 75, 0.05);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(206, 178, 75, 0.1);
 }
 
-.path-card::after {
+.path-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(206, 178, 75, 0.1), transparent 70%);
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(206, 178, 75, 0.06), transparent 40%);
     opacity: 0;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.5s;
     pointer-events: none;
 }
 
-.path-card:hover::after {
+.path-card:hover::before {
     opacity: 1;
 }
 
@@ -1033,7 +1118,12 @@ header {
 }
 
 .g-text-gold {
-    color: var(--gold-primary);
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(206, 178, 75, 0.3));
+    font-weight: 800;
 }
 
 .gold-line-divider {
@@ -1264,12 +1354,27 @@ header {
     animation: dotPulse 1.4s infinite ease-in-out;
 }
 
-.typing-indicator .dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+.typing-indicator .dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator .dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
 
 @keyframes dotPulse {
-    0%, 80%, 100% { opacity: 0.4; transform: scale(1); }
-    40% { opacity: 1; transform: scale(1.3); }
+
+    0%,
+    80%,
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
 }
 
 /* ─── Mic Listening State ─── */
@@ -1279,8 +1384,15 @@ header {
 }
 
 @keyframes micPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
 }
 
 /* ═══════════════════════════════════════════════
@@ -1318,6 +1430,7 @@ header {
    ═══════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
+
     /* Hide sidebar completely on mobile */
     .sidebar {
         display: none !important;

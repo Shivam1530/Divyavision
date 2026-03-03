@@ -224,7 +224,7 @@ birthForm.addEventListener('submit', async (e) => {
 
     // 3. Update choose screen summary
     const timeDisplay = appState.astroData.birth_time_formatted || time;
-    chooseSummary.textContent = `Welcome, ${name}. Born at ${timeDisplay}. Life Path Number ${appState.numerologyData.life_path_number} — ${appState.numerologyData.title}. Choose how you'd like to explore.`;
+    chooseSummary.innerHTML = `Welcome, <strong>${name}</strong>. Born at ${timeDisplay}.<br>Life Path Number <strong>${appState.numerologyData.life_path_number}</strong> — ${appState.numerologyData.title}.<br>Choose how you'd like to explore your cosmic blueprint.`;
 
     // 4. Show choose path view
     showView('choose');
