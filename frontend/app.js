@@ -55,6 +55,7 @@ const appState = {
     conversation: [],
     isListening: false,
     isSpeaking: false,
+    isMuted: false,
     userName: '',
     userDob: ''
 };
@@ -77,6 +78,9 @@ const defaultHeaderLogo = document.getElementById('default-header-logo');
 
 const birthForm = document.getElementById('birth-form');
 const btnBack = document.getElementById('btn-back');
+const btnChatBack = document.getElementById('btn-chat-back');
+const btnMute = document.getElementById('btn-mute');
+const muteIcon = document.getElementById('mute-icon');
 const btnGoChat = document.getElementById('btn-go-chat');
 const btnGoReport = document.getElementById('btn-go-report');
 const btnNewReading = document.getElementById('btn-new-reading');
@@ -108,14 +112,20 @@ function showView(viewName) {
         chatGuideHeader.style.display = 'block';
         defaultHeaderLogo.style.display = 'none';
         mainContent.classList.add('with-sidebar');
+        // Show chat-specific back & mute buttons
+        btnChatBack.style.display = 'flex';
+        btnMute.style.display = 'flex';
     } else {
         sidebar.classList.remove('active');
         chatGuideHeader.style.display = 'none';
         defaultHeaderLogo.style.display = 'flex';
         mainContent.classList.remove('with-sidebar');
+        // Hide chat-specific buttons
+        btnChatBack.style.display = 'none';
+        btnMute.style.display = 'none';
     }
 
-    // Toggle back button
+    // Toggle back button (for choose/report views)
     btnBack.style.display = (viewName === 'entry' || viewName === 'chat') ? 'none' : 'flex';
 
     // Allow scroll on report
@@ -149,6 +159,27 @@ btnBack.addEventListener('click', () => {
         showView('choose');
     } else if (currentView === 'choose') {
         showView('entry');
+    }
+});
+
+// Chat-specific back button
+btnChatBack.addEventListener('click', () => {
+    showView('choose');
+});
+
+// Mute/Unmute toggle
+btnMute.addEventListener('click', () => {
+    appState.isMuted = !appState.isMuted;
+    if (appState.isMuted) {
+        muteIcon.textContent = 'volume_off';
+        btnMute.classList.add('muted');
+        btnMute.title = 'Unmute Voice';
+        // Stop any current speech
+        if (synth.speaking) synth.cancel();
+    } else {
+        muteIcon.textContent = 'volume_up';
+        btnMute.classList.remove('muted');
+        btnMute.title = 'Mute Voice';
     }
 });
 
@@ -431,6 +462,7 @@ micBtn.addEventListener('click', () => {
 const synth = window.speechSynthesis;
 
 function speak(text) {
+    if (appState.isMuted) return; // Respect mute setting
     if (synth.speaking) synth.cancel();
     const utt = new SpeechSynthesisUtterance(text);
     const voices = synth.getVoices();
